@@ -1,20 +1,31 @@
 // ! ! !
 // Three Bugs
 /*
-First, in the function, calculateSTI, the array referrences needed to be "array[1][x]", where x is the proper position 
+First, in the function, calculateSTI, the array referrences needed to be "array[i][x]", where x is the proper position 
 for what is being looked for. I think that's two mistakes in one. 
 
 Where it said "return basePercent - 1;", the "- 1" was a bug and removing it fixed it. 
 
-I also made it round for newArray[3]
+I also made it round for newArray[3], the bonus ammount.
 
 And where it's calling newArray[2], I rewrote the formula so we don't get those long decimals.
 
-That's 4 or 5 bugs? hm. 
-
+That's 4 or 5 bugs? hm.
 Then I took a break before cracking into the deep stuff.
 
+Hard: I put spaces in at the start of the relavent newArray[x] assignments in the calculateSTI 
+function to solve this one.
+
+Pro: I altered the second array to read as a percent rather than a decimal. Put in "$" signs. 
+Altered the style directly in HTML to change the ul style to not have bullet points.
+
+I'd like to put in commas to separate the place values of the numbers over 1000, but the way I
+can imagine would take more time than I have. It would mean converting to string, parsing out 
+the numbers, dropping in commas as the number is rebuilt, and it would all be couched in conditional
+statements. Fun, but not as fun as a good night's rest.
+
 */
+
 
 var arrayAtticus = ["Atticus", "2405", "47000", 3];
 var arrayJem = ["Jem", "62347", "63500", 4];
@@ -53,12 +64,13 @@ function calculateSTI(array){
     bonus = 0.13;
   }
 
-  newArray[1] = bonus;
+  newArray[1] = " " + bonus * 100 + "%";
 //changed the string to a number, replaced the "1.0 + bonus" to "(baseSalary * bonus)".
 //this got rid of the decimals after the total salary.  
-  newArray[2] = parseInt(baseSalary) + (baseSalary * bonus); 
+// Coming back to add spaces, I had to ouch [2] in another parseInt so it would not go back to stringiness
+  newArray[2] = " $" + parseInt(parseInt(baseSalary) + (baseSalary * bonus)); 
 // added Math.round to fix that per the instructions.
-  newArray[3] = Math.round(baseSalary * bonus);
+  newArray[3] = " $" + Math.round(baseSalary * bonus);
 
  console.log(newArray[0] + " " + newArray[1] + " " + newArray[2] + " " + newArray[3]);
   return newArray;
